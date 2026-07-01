@@ -26,6 +26,8 @@ import {
   Sliders,
   Save,
   Trash2,
+  Plus,
+  Minus,
 } from 'lucide-react';
 
 // Pilihan Background Estetik Studio
@@ -208,7 +210,7 @@ export default function App() {
       .insert([newModel])
       .select();
 
-    setIsLoading(false);
+    setIsLoading(true);
 
     if (error) {
       console.error('Error saving model:', error);
@@ -926,7 +928,7 @@ export default function App() {
 
           <hr className="border-slate-800" />
 
-          {/* BAGIAN 4: TEKS KUSTOM */}
+          {/* BAGIAN 4: TEKS KUSTOM & CONTOUR */}
           <div className="flex flex-col gap-3">
             <label className="text-xs font-bold text-slate-300 flex items-center gap-2 uppercase tracking-wider">
               <Type className="w-4 h-4 text-emerald-400" /> 3. Penambahan Teks &
@@ -976,6 +978,39 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Ukuran Teks (Slider + Tombol Tambahan) */}
+              <div className="flex flex-col gap-1">
+                <div className="flex justify-between text-[11px] font-semibold text-slate-400">
+                  <span>Ukuran Teks</span>
+                  <span className="text-emerald-400">{textSize}px</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setTextSize((prev) => Math.max(10, prev - 5))}
+                    className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors"
+                    title="Perkecil Teks"
+                  >
+                    <Minus className="w-3.5 h-3.5" />
+                  </button>
+                  <input
+                    type="range"
+                    min="10"
+                    max="250"
+                    step="1"
+                    value={textSize}
+                    onChange={(e) => setTextSize(parseInt(e.target.value))}
+                    className="flex-1 accent-emerald-500 h-1 cursor-pointer"
+                  />
+                  <button
+                    onClick={() => setTextSize((prev) => Math.min(250, prev + 5))}
+                    className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors"
+                    title="Perbesar Teks"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
               {/* Contour */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-center gap-2 bg-slate-900 border border-slate-700 rounded-lg p-1">
@@ -996,17 +1031,33 @@ export default function App() {
                       {textContourWidth}px
                     </span>
                   </div>
-                  <input
-                    type="range"
-                    min="0"
-                    max="40"
-                    step="1"
-                    value={textContourWidth}
-                    onChange={(e) =>
-                      setTextContourWidth(parseInt(e.target.value))
-                    }
-                    className="w-full accent-emerald-500 h-1 cursor-pointer"
-                  />
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setTextContourWidth((prev) => Math.max(0, prev - 1))}
+                      className="p-1 bg-slate-800 hover:bg-slate-700 rounded text-slate-300 text-xs transition-colors"
+                      title="Perkecil Contour"
+                    >
+                      <Minus className="w-3 h-3" />
+                    </button>
+                    <input
+                      type="range"
+                      min="0"
+                      max="40"
+                      step="1"
+                      value={textContourWidth}
+                      onChange={(e) =>
+                        setTextContourWidth(parseInt(e.target.value))
+                      }
+                      className="flex-1 accent-emerald-500 h-1 cursor-pointer"
+                    />
+                    <button
+                      onClick={() => setTextContourWidth((prev) => Math.min(40, prev + 1))}
+                      className="p-1 bg-slate-800 hover:bg-slate-700 rounded text-slate-300 text-xs transition-colors"
+                      title="Perbesar Contour"
+                    >
+                      <Plus className="w-3 h-3" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
