@@ -604,7 +604,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">
-              CaseLab design
+              Caselab Mockup
             </h1>
             <p className="text-[11px] text-slate-400 font-medium">
               Cloud Database & Template Engine
@@ -1011,9 +1011,10 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Contour */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex items-center gap-2 bg-slate-900 border border-slate-700 rounded-lg p-1">
+              {/* Contour - Layout Baris Sejajar Diperbaiki agar Tidak Keluar Bar */}
+              <div className="flex flex-col md:flex-row gap-4 bg-slate-900 border border-slate-700 rounded-lg p-3 items-center">
+                {/* Pilih Warna Contour */}
+                <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg p-2 w-full md:w-auto min-w-[120px]">
                   <input
                     type="color"
                     value={textContourColor}
@@ -1024,20 +1025,22 @@ export default function App() {
                     {textContourColor}
                   </span>
                 </div>
-                <div className="flex flex-col gap-1 justify-center">
+
+                {/* Slider dan Tombol Plus/Minus Contour */}
+                <div className="flex flex-col gap-1 flex-1 w-full">
                   <div className="flex justify-between text-[10px] font-semibold text-slate-400">
                     <span>Tebal Contour</span>
                     <span className="text-emerald-400">
                       {textContourWidth}px
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <button
                       onClick={() => setTextContourWidth((prev) => Math.max(0, prev - 1))}
-                      className="p-1 bg-slate-800 hover:bg-slate-700 rounded text-slate-300 text-xs transition-colors"
+                      className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors"
                       title="Perkecil Contour"
                     >
-                      <Minus className="w-3 h-3" />
+                      <Minus className="w-3.5 h-3.5" />
                     </button>
                     <input
                       type="range"
@@ -1052,10 +1055,10 @@ export default function App() {
                     />
                     <button
                       onClick={() => setTextContourWidth((prev) => Math.min(40, prev + 1))}
-                      className="p-1 bg-slate-800 hover:bg-slate-700 rounded text-slate-300 text-xs transition-colors"
+                      className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors"
                       title="Perbesar Contour"
                     >
-                      <Plus className="w-3 h-3" />
+                      <Plus className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
