@@ -1011,54 +1011,53 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Contour - Layout Baris Sejajar Diperbaiki agar Tidak Keluar Bar */}
-              <div className="flex flex-col md:flex-row gap-4 bg-slate-900 border border-slate-700 rounded-lg p-3 items-center">
-                {/* Pilih Warna Contour */}
-                <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg p-2 w-full md:w-auto min-w-[120px]">
-                  <input
-                    type="color"
-                    value={textContourColor}
-                    onChange={(e) => setTextContourColor(e.target.value)}
-                    className="w-6 h-6 rounded cursor-pointer border-0 bg-transparent p-0"
-                  />
-                  <span className="text-[10px] text-slate-300 uppercase">
-                    {textContourColor}
-                  </span>
+              {/* Contour - Layout Responsif & Rapi Tanpa Meluap */}
+              <div className="flex flex-col gap-3 bg-slate-900 border border-slate-700 rounded-lg p-3">
+                <div className="flex justify-between text-[10px] font-semibold text-slate-400">
+                  <span>Warna & Tebal Contour</span>
+                  <span className="text-emerald-400">{textContourWidth}px</span>
                 </div>
-
-                {/* Slider dan Tombol Plus/Minus Contour */}
-                <div className="flex flex-col gap-1 flex-1 w-full">
-                  <div className="flex justify-between text-[10px] font-semibold text-slate-400">
-                    <span>Tebal Contour</span>
-                    <span className="text-emerald-400">
-                      {textContourWidth}px
+                
+                <div className="flex items-center gap-2 w-full">
+                  {/* Pilih Warna Contour */}
+                  <div className="flex items-center gap-1 bg-slate-950 border border-slate-850 rounded-lg p-1.5 shrink-0">
+                    <input
+                      type="color"
+                      value={textContourColor}
+                      onChange={(e) => setTextContourColor(e.target.value)}
+                      className="w-5 h-5 rounded cursor-pointer border-0 bg-transparent p-0"
+                    />
+                    <span className="text-[10px] text-slate-300 uppercase font-mono">
+                      {textContourColor}
                     </span>
                   </div>
-                  <div className="flex items-center gap-3">
+
+                  {/* Kontrol Slider Plus Minus */}
+                  <div className="flex items-center gap-1.5 flex-1 min-w-0">
                     <button
                       onClick={() => setTextContourWidth((prev) => Math.max(0, prev - 1))}
-                      className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors"
+                      className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors shrink-0"
                       title="Perkecil Contour"
                     >
-                      <Minus className="w-3.5 h-3.5" />
+                      <Minus className="w-3 h-3" />
                     </button>
+                    
                     <input
                       type="range"
                       min="0"
                       max="40"
                       step="1"
                       value={textContourWidth}
-                      onChange={(e) =>
-                        setTextContourWidth(parseInt(e.target.value))
-                      }
-                      className="flex-1 accent-emerald-500 h-1 cursor-pointer"
+                      onChange={(e) => setTextContourWidth(parseInt(e.target.value))}
+                      className="flex-1 accent-emerald-500 h-1 cursor-pointer min-w-0"
                     />
+                    
                     <button
                       onClick={() => setTextContourWidth((prev) => Math.min(40, prev + 1))}
-                      className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors"
+                      className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-md text-slate-300 transition-colors shrink-0"
                       title="Perbesar Contour"
                     >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-3 h-3" />
                     </button>
                   </div>
                 </div>
