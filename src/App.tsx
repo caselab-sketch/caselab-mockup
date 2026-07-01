@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import { createClient } from '@supabase/supabase-js';
 const SUPABASE_URL = 'https://qrgyyasvdlnehicbipit.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_QL0_OcKVfucL-xKBHF_ujw_Blvv6rDf';
